@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="757c629e-2927-4485-bf58-d657a006e8f1" name="Yanglab">
+        <fileTransfer accessType="SFTP" host="172.26.136.118" port="22" sshConfigId="258f9c9d-9027-4ab0-9481-51799385fa65" sshConfig="lichao@172.26.133.151">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="847c2670-aabc-40f4-bf04-d6ca417e695c" name="Yanglab5">
+        <fileTransfer rootFolder="/home/lichao" accessType="SFTP" host="172.26.191.118" port="22" sshConfigId="4957fa5d-bd65-480e-af9a-501ada1e6dff" sshConfig="lichao@172.26.191.118:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="87836848-4889-49a3-8f3e-e83fbf0196f3" name="Yanglab1">
+        <fileTransfer accessType="SFTP" host="172.26.136.118" port="22" sshConfigId="fbdf53a2-7656-47e9-93c9-9523ec35c88f" sshConfig="yanglab1">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

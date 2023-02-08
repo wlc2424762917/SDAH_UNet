@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="172.26.136.118" id="258f9c9d-9027-4ab0-9481-51799385fa65" port="22" customName="lichao@172.26.133.151" nameFormat="CUSTOM" username="lichao" useOpenSSHConfig="true">
+        <option name="customName" value="lichao@172.26.133.151" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="172.26.136.118" id="fbdf53a2-7656-47e9-93c9-9523ec35c88f" port="22" customName="yanglab1" nameFormat="CUSTOM" username="lichao" useOpenSSHConfig="true">
+        <option name="customName" value="yanglab1" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

@@ -1,0 +1,135 @@
+{
+  "datasets": {
+    "test": {
+      "H_size": 224,
+      "W_size": 224,
+      "dataroot_src": "/media/NAS02/ACDC/EStestingset_3D/src"    // path of H testing dataset
+      , "dataroot_gt": "/media/NAS02/ACDC/EStestingset_3D/gt"
+      , "dataroot_pkl": "/media/NAS02/ACDC/EStrainingset/properties",
+      "dataset_type": "ACDC_2D",
+      "manual_seed": 42,
+      "name": "test_dataset",
+      "num_class": 3,
+      "resize_method": null,
+      "sigma": 15,
+      "sigma_test": 15
+    },
+    "train": {
+      "H_size": 224,
+      "W_size": 224,
+      "dataloader_batch_size": 24,
+      "dataloader_num_workers": 16,
+      "dataloader_shuffle": true,
+      "dataroot_src": "/media/NAS02/ACDC/EStrainingset/src"
+      , "dataroot_gt": "/media/NAS02/ACDC/EStrainingset/gt"
+      , "dataroot_pkl": "/media/NAS02/ACDC/EStrainingset/properties",
+      "dataset_type": "ACDC_2D",
+      "is_mini_dataset": false,
+      "manual_seed": 42,
+      "mini_dataset_prec": 1,
+      "name": "train_dataset",
+      "num_class": 3,
+      "resize_method": null,
+      "sigma": 15,
+      "sigma_test": 15
+    }
+  },
+  "dist": false,
+  "gpu_ids": [
+    0
+  ],
+  "manual_seed": 42,
+  "model": "unets",
+  "n_channels": 1,
+  "netSeg": {
+    "base_num_features": 32,
+    "conv_kernel_sizes": [
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "img_size": [
+      224,
+      224
+    ],
+    "in_chans": 1,
+    "init_type": "default",
+    "net_type": "unets",
+    "num_pool": 4,
+    "out_chans": 4,
+    "pool_op_kernel_sizes": [
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "upscale": 1,
+    "shape_must_be_divisible_by": [
+      16,
+      16
+    ], "use_tile": true
+  },
+  "path": {
+    "pretrained_netSeg": null,
+    "root": "ACDC_ES_UNET_2D",
+    "test_image_save_dir": "/media/NAS02/lc/UNet_ACDC_ES_result"
+  },
+  "task": "UNet_2D_ACDC_ES_ce_dice_train_1",
+  "train": {
+    "Seg_optimizer_clipgrad": null,
+    "Seg_optimizer_lr": 0.0002,
+    "Seg_optimizer_reuse": true,
+    "Seg_optimizer_type": "adam",
+    "Seg_optimizer_wd": 0,
+    "Seg_param_strict": true,
+    "Seg_regularizer_clipstep": null,
+    "Seg_regularizer_orthstep": null,
+    "Seg_scheduler_gamma": 0.5,
+    "Seg_scheduler_milestones": [
+      50000,
+      70000,
+      90000,
+      100000,
+      110000
+    ],
+    "Seg_scheduler_type": "MultiStepLR",
+    "alpha": 1,
+    "beta": 0.1,
+    "checkpoint_print": 10,
+    "checkpoint_save": 5000,
+    "checkpoint_test": 2000,
+    "early_stopping_num": 8,
+    "is_early_stopping": false,
+    "loss_weight": [1, 1, 1, 1],
+    "lossfn_type": "ce_dice"
+  }
+}

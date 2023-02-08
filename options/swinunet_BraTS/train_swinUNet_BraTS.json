@@ -1,0 +1,93 @@
+{
+  "task": "swinUNet_BraTS"
+  , "model": "swinunet"    // 'swinmr_pi' or 'swinmr_npi'
+  , "gpu_ids": [1]
+  , "dist": false   // distributed computing
+  , "n_channels": 4    // 1 for grayscale, 3 for color
+  , "use_pretrain_weight": "all" // "enc" or 'all" or "no"
+  , "manual_seed": 42
+  , "path": {
+    "root": "BraTS_swinunet",
+    "test_image_save_dir": "/media/NAS02/lc/swinUNet_braTS_result",
+    "pretrained_netSeg": null
+  }
+
+  , "datasets": {
+    "train": {
+      "name": "train_dataset"
+      , "dataset_type": "BraTS_2D"
+      , "dataroot_src": "/media/NAS02/BraTS2020/Trainingset/src"
+      , "dataroot_gt": "/media/NAS02/BraTS2020/Trainingset/gt"
+      , "dataroot_pkl": "/media/NAS02/BraTS2020/Trainingset/properties"
+      , "H_size": 224    // patch number for traning stage (randomly crop), set 256 to cancel randomly crop
+      , "W_size": 224
+      , "sigma": 15
+      , "sigma_test": 15
+      , "is_mini_dataset": false   // for debug
+      , "mini_dataset_prec": 1    // CC 4700 total
+      , "dataloader_shuffle": true
+      , "dataloader_num_workers": 12
+      , "dataloader_batch_size": 16
+      , "manual_seed": 42
+      , "num_class": 3,
+      "resize_method": "central_crop"
+    }
+    , "test": {
+      "name": "test_dataset"
+      , "dataset_type": "BraTS_2D"
+      , "dataroot_src": "/media/NAS02/BraTS2020/Testingset/src"    // path of H testing dataset
+      , "dataroot_gt": "/media/NAS02/BraTS2020/Testingset/gt"
+      , "dataroot_pkl": "/media/NAS02/BraTS2020/Testingset/properties"
+      , "H_size": 224    // patch number for traning stage (randomly crop), set 256 to cancel randomly crop
+      , "W_size": 224
+      , "sigma": 15
+      , "sigma_test": 15
+      , "num_class": 3,
+        "resize_method": "central_crop"
+  }
+  }
+
+  , "netSeg": {
+    "net_type": "swinunet"
+    , "upscale": 1
+    , "in_chans": 4
+    , "out_chans": 4  // should be the same with num_class
+    , "img_size": 224
+    , "patch_size": 4
+    , "window_size": 7
+    , "img_range": 1.0
+    , "num_groups": [1, 3, 6, 6]
+    , "depths": [3, 3, 3, 3]
+    , "embed_dim": 192    // channel number
+    , "num_heads": [3, 6, 12, 24]
+    , "mlp_ratio": 4
+    , "init_type": "default"
+    , "init_bn_type": "default"
+    , "init_gain": "default"
+    , "use_tile": true
+
+  }
+
+  , "train": {
+    "lossfn_type": "ce_dice"
+    , "alpha": 1    // default 1
+    , "beta": 1    // default 1
+    , "Seg_optimizer_type": "adam"    // fixed, adam is enough
+    , "Seg_optimizer_lr": 2e-4    // learning rate default 2e-4
+    , "Seg_optimizer_wd": 0    // weight decay, default 0
+    , "Seg_optimizer_clipgrad": null
+    , "Seg_optimizer_reuse": true
+
+    , "Seg_scheduler_type": "MultiStepLR"
+    , "Seg_scheduler_milestones": [50000, 60000, 80000, 100000, 120000]
+    , "Seg_scheduler_gamma": 0.5
+
+    , "Seg_regularizer_orthstep": null
+    , "Seg_regularizer_clipstep": null
+
+    , "Seg_param_strict": true
+    , "checkpoint_test": 1000    // for testing 10000
+    , "checkpoint_save": 20000    // for saving model 10000
+    , "checkpoint_print": 200   // for print 200
+  }
+}
